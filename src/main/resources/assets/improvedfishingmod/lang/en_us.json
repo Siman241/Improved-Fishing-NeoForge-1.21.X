@@ -1,0 +1,10 @@
+{
+  "item.improvedfishingmod.fishingrod": "Fishing Rod",
+  "item.improvedfishingmod.fishingline": "Fishing Line",
+  "item.improvedfishingmod.commoncarp": "Common Carp",
+  "item.improvedfishingmod.worm": "Worm",
+  "item.improvedfishingmod.fishinghook": "Fishing Hook",
+
+  "creativetab.improvedfishingmod.fishing_items": "Fishing Items",
+  "creativetab.improvedfishingmod.fish_and_bait": "Food and Bait"
+}

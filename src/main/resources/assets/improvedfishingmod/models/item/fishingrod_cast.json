@@ -1,0 +1,7 @@
+{
+  "parent": "improvedfishingmod:item/fishingrod",
+  "textures": {
+    "layer0": "improvedfishingmod:item/fishingrod_cast"
+  }
+}
+
