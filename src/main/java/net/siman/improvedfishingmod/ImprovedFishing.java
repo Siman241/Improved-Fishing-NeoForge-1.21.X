@@ -9,13 +9,12 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
+import net.neoforged.fml.ModList;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
 import net.neoforged.neoforge.event.level.NoteBlockEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
 import net.neoforged.neoforge.items.wrapper.EntityEquipmentInvWrapper;
-import net.siman.improvedfishingmod.data.DataGenerators;
-import net.siman.improvedfishingmod.init.LootModifierInit;
 import net.siman.improvedfishingmod.item.ModCreativeModeTabs;
 import net.siman.improvedfishingmod.item.ModItems;
 import net.siman.improvedfishingmod.item.custom.FishingRod;
@@ -55,16 +54,13 @@ public class ImprovedFishing {
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public ImprovedFishing(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
-        //modEventBus.addListener(this::commonSetup);
+        modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
-
-        LootModifierInit.LOOT_MODIFIERS.register(modEventBus);
-        modEventBus.addListener(DataGenerators::gatherData);
 
         // Register the item to a creative tab
         //modEventBus.addListener(this::addCreative);
@@ -77,6 +73,14 @@ public class ImprovedFishing {
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
+        boolean f = false;
+        for(int i=0;i<ModList.get().getMods().size();i++){
+            //System.out.println(ModList.get().getMods().get(i).getModId());
+            if(Objects.equals(ModList.get().getMods().get(i).getModId(), "crafttweaker")) f=true;
+        }
+        if(!f) throw new RuntimeException("Missing CraftTweakerMod");
+
+
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -107,7 +111,7 @@ public class ImprovedFishing {
          */
         //System.out.println(ply.getOffhandItem().getItem().toString().equals("minecraft:fishing_rod"));
         if(ply.getItemInHand(ply.getUsedItemHand()).getItem().toString().equals("minecraft:fishing_rod")){
-            ply.setItemInHand(ply.getUsedItemHand(),ModItems.FISHINGROD.toStack());
+            ply.setItemInHand(ply.getUsedItemHand(),ModItems.WOODROD.toStack());
             /* to find what ID String is
             for(int i=0;i<1200;i++) {
                 if(MinecartItem.byId(i).getDefaultInstance().getItem().toString().equals("minecraft:string")) System.out.println(i);
@@ -117,10 +121,16 @@ public class ImprovedFishing {
             ply.addItem(MinecartItem.byId(850).getDefaultInstance());
             ply.addItem(MinecartItem.byId(850).getDefaultInstance());
             ply.playSound(SoundEvents.CRAFTER_CRAFT);
+            /*
+            for(int i=0;i<ModList.get().getMods().size();i++){
+                System.out.println(ModList.get().getMods().get(i).getModId());
+            }
+
+             */
         }
         else if(ply.getOffhandItem().getItem().toString().equals("minecraft:fishing_rod")){
             for(int i=99;i<100;i++){
-                ply.getSlot(i).set(ModItems.FISHINGROD.toStack());
+                ply.getSlot(i).set(ModItems.WOODROD.toStack());
             }
             ply.addItem(MinecartItem.byId(850).getDefaultInstance());
             ply.addItem(MinecartItem.byId(850).getDefaultInstance());

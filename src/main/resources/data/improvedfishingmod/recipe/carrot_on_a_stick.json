@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "minecraft:carrot"
+    },
+    {
+      "item": "improvedfishingmod:woodrod"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "minecraft:carrot_on_a_stick"
+  }
+}

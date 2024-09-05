@@ -16,20 +16,27 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ImprovedFishing.MOD_ID);
 
     public static final Supplier<CreativeModeTab> IMPROVED_FISHING_ITEMS_TAB = CREATIVE_MODE_TAB.register("improved_fishing_items_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.FISHINGROD.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.WOODROD.get()))
             .title(Component.translatable("creativetab.improvedfishingmod.fishing_items"))
             .displayItems(((itemDisplayParameters, output) -> {
-                output.accept(ModItems.FISHINGROD);
+                output.accept(ModItems.WOODROD);
+                output.accept(ModItems.WOODPOLE);
                 output.accept(ModItems.FISHINGLINE);
                 output.accept(ModItems.FISHINGHOOK);
+                output.accept(ModItems.FISHINGREEL);
             })).build());
 
     public static final Supplier<CreativeModeTab> IMPROVED_FISHING_FISH_AND_BAIT_TAB = CREATIVE_MODE_TAB.register("improved_fishing_fish_and_bait_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.COMMONCARP.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.RAWPIKE.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(ImprovedFishing.MOD_ID, "improved_fishing_items_tab"))
                     .title(Component.translatable("creativetab.improvedfishingmod.fish_and_bait"))
                     .displayItems(((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.COMMONCARP);
+                        output.accept(ModItems.RAWCARP);
+                        output.accept(ModItems.RAWCATFISH);
+                        output.accept(ModItems.RAWPIKE);
+                        output.accept(ModItems.COOKEDCARP);
+                        output.accept(ModItems.COOKEDCATFISH);
+                        output.accept(ModItems.COOKEDPIKE);
                         output.accept(ModItems.WORM);
                     })).build());
 

@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "improvedfishingmod:fishingline"
+    },
+    {
+      "item": "improvedfishingmod:fishinghook"
+    },
+    {
+      "item": "improvedfishingmod:woodpole"
+    },
+    {
+      "item": "improvedfishingmod:fishingreel"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "improvedfishingmod:woodrod"
+  }
+}

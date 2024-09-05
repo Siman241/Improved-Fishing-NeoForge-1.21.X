@@ -22,17 +22,41 @@ public class ModItems {
                     new Item.Properties()
             ));
     */
+    //Items and Tools
     public static final DeferredItem<Item> FISHINGLINE = ITEMS.register("fishingline",
             ()-> new Item(new Item.Properties().stacksTo(1)));
 
-    public static final DeferredItem<Item> FISHINGROD = ITEMS.register("fishingrod",
+    public static final DeferredItem<Item> WOODROD = ITEMS.register("woodrod",
             ()-> new FishingRod(new Item.Properties().stacksTo(1)));
+
+    public static final DeferredItem<Item> WOODPOLE = ITEMS.register("woodpole",
+            ()-> new Item(new Item.Properties().stacksTo(1)));
 
     public static final DeferredItem<Item> FISHINGHOOK = ITEMS.register("fishinghook",
             ()-> new Item(new Item.Properties().stacksTo(1)));
 
-    public static final DeferredItem<Item> COMMONCARP = ITEMS.register("commoncarp",
-            ()-> new Item(new Item.Properties().stacksTo(16).food(ModFoods.COMMONCARP)));
+    public static final DeferredItem<Item> FISHINGREEL = ITEMS.register("fishingreel",
+            ()-> new Item(new Item.Properties().stacksTo(1)));
+
+
+    //Food and Baits
+    public static final DeferredItem<Item> RAWCARP = ITEMS.register("raw_carp",
+            ()-> new Item(new Item.Properties().food(ModFoods.RAWCARP)));
+
+    public static final DeferredItem<Item> RAWCATFISH = ITEMS.register("raw_catfish",
+            ()-> new Item(new Item.Properties().food(ModFoods.RAWCATFISH)));
+
+    public static final DeferredItem<Item> RAWPIKE = ITEMS.register("raw_pike",
+            ()-> new Item(new Item.Properties().food(ModFoods.RAWPIKE)));
+
+    public static final DeferredItem<Item> COOKEDCARP = ITEMS.register("cooked_carp",
+            ()-> new Item(new Item.Properties().food(ModFoods.COOKEDCARP)));
+
+    public static final DeferredItem<Item> COOKEDCATFISH = ITEMS.register("cooked_catfish",
+            ()-> new Item(new Item.Properties().food(ModFoods.COOKEDATFISH)));
+
+    public static final DeferredItem<Item> COOKEDPIKE = ITEMS.register("cooked_pike",
+            ()-> new Item(new Item.Properties().food(ModFoods.COOKEDPIKE)));
 
     public static final DeferredItem<Item> WORM = ITEMS.register("worm",
             ()-> new Item(new Item.Properties()));

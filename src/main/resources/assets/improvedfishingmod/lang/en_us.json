@@ -1,10 +1,17 @@
 {
-  "item.improvedfishingmod.fishingrod": "Fishing Rod",
+  "item.improvedfishingmod.woodrod": "Wooden Rod",
+  "item.improvedfishingmod.woodpole": "Wooden Pole",
   "item.improvedfishingmod.fishingline": "Fishing Line",
-  "item.improvedfishingmod.commoncarp": "Common Carp",
+  "item.improvedfishingmod.raw_carp": "Raw Carp",
+  "item.improvedfishingmod.raw_catfish": "Raw Catfish",
+  "item.improvedfishingmod.raw_pike": "Raw Pike",
+  "item.improvedfishingmod.cooked_carp": "Cooked Carp",
+  "item.improvedfishingmod.cooked_catfish": "Cooked Catfish",
+  "item.improvedfishingmod.cooked_pike": "Cooked Pike",
   "item.improvedfishingmod.worm": "Worm",
   "item.improvedfishingmod.fishinghook": "Fishing Hook",
+  "item.improvedfishingmod.fishingreel": "Fishing Reel",
 
   "creativetab.improvedfishingmod.fishing_items": "Fishing Items",
-  "creativetab.improvedfishingmod.fish_and_bait": "Food and Bait"
+  "creativetab.improvedfishingmod.fish_and_bait": "Food & Bait"
 }

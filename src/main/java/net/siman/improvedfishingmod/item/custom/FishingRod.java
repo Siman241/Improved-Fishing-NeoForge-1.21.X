@@ -56,6 +56,8 @@ public class FishingRod extends FishingRodItem {
     @Override
     public boolean canPerformAction(ItemStack stack, ItemAbility itemAbility) {
         //System.out.println(event.getEntity().toString());
+        return ItemAbilities.DEFAULT_FISHING_ROD_ACTIONS.contains(itemAbility);
+        /*
         if (player1.getInventory().hasAnyMatching(new Predicate<ItemStack>() {
             @Override
             public boolean test(ItemStack itemStack) {
@@ -83,6 +85,8 @@ public class FishingRod extends FishingRodItem {
                 }
 
         return false;
+
+         */
     }
 
 
