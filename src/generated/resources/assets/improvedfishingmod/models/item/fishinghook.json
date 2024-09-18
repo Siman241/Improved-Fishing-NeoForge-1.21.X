@@ -1,7 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "improvedfishingmod:item/fishingreel"
+    "layer0": "improvedfishingmod:item/fishinghook"
   }
 }
-

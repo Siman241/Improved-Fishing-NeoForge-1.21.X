@@ -1,7 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "improvedfishingmod:item/cooked_catfish"
+    "layer0": "improvedfishingmod:item/cooked_piranha"
   }
 }
-

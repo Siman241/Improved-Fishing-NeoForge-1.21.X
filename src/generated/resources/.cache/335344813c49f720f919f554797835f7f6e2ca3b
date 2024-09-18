@@ -1,0 +1,5 @@
+// 1.21.1	2024-09-18T11:57:23.688458	Tags for minecraft:item mod id improvedfishingmod
+e8f43e2790ed562180c470ec1eeb63ce19c8c9b4 data/improvedfishingmod/tags/item/bait.json
+f44973e5febef128c1c7d2dbc9dbdabc3be5fa21 data/improvedfishingmod/tags/item/fishing_equipment.json
+dc40253aebbb5fbb2a2522014c306bf3c943de7e data/improvedfishingmod/tags/item/improved_fishing_equipment.json
+60d29e6cf63215271413a841eaa5054bd0824099 data/minecraft/tags/item/fishes.json
