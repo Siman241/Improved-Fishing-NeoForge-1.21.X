@@ -1,0 +1,21 @@
+{
+  "parent": "minecraft:item/handheld_rod",
+  "textures": {
+    "layer0": "improvedfishingmod:item/bamboo_rod"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "improvedfishingmod:bamboo_cast": 0
+      },
+      "model": "improvedfishingmod:item/bamboo_rod"
+    },
+    {
+      "predicate": {
+        "improvedfishingmod:bamboo_cast": 1
+      },
+      "model": "improvedfishingmod:item/bamboo_rod_cast"
+    }
+  ]
+}
+

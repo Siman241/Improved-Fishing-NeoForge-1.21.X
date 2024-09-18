@@ -1,6 +1,6 @@
 {
-  "item.improvedfishingmod.woodrod": "Wooden Rod",
-  "item.improvedfishingmod.woodpole": "Wooden Pole",
+  "item.improvedfishingmod.woodrod": "Wooden Fishing Rod",
+  "item.improvedfishingmod.woodpole": "Wooden Fishing Pole",
   "item.improvedfishingmod.fishingline": "Fishing Line",
   "item.improvedfishingmod.raw_carp": "Raw Carp",
   "item.improvedfishingmod.raw_catfish": "Raw Catfish",
@@ -12,6 +12,34 @@
   "item.improvedfishingmod.fishinghook": "Fishing Hook",
   "item.improvedfishingmod.fishingreel": "Fishing Reel",
 
+  "item.improvedfishingmod.automatic_fishing_reel": "Automatic Fishing Reel",
+  "item.improvedfishingmod.diamond_tipped_fishing_hook": "Diamond Tipped Fishing Hook",
+  "item.improvedfishingmod.strengthened_fishing_line": "Strengthened Fishing Line",
+  "item.improvedfishingmod.bamboo_rod": "Bamboo Fishing Rod",
+  "item.improvedfishingmod.bamboo_pole": "Bamboo Fishing Pole",
+
+  "item.improvedfishingmod.fishing_equipment": "Fishing Equipment",
+  "item.improvedfishingmod.improved_fishing_equipment": "Improved Fishing Equipment",
+  "item.improvedfishingmod.bait": "Bait",
+
+  "item.improvedfishingmod.raw_arapaima": "Raw Arapaima",
+  "item.improvedfishingmod.cooked_arapaima": "Cooked Arapaima",
+  "item.improvedfishingmod.raw_piranha": "Raw Piranha",
+  "item.improvedfishingmod.cooked_piranha": "Cooked Piranha",
+  "item.improvedfishingmod.raw_eel": "Raw Eel",
+  "item.improvedfishingmod.cooked_eel": "Cooked Eel",
+
+  "item.improvedfishingmod.raw_tuna": "Raw Tuna",
+  "item.improvedfishingmod.cooked_tuna": "Cooked Tuna",
+  "item.improvedfishingmod.raw_octopus": "Raw Octopus",
+  "item.improvedfishingmod.cooked_octopus": "Cooked Octopus",
+  "item.improvedfishingmod.sea_snail": "Sea Snail",
+
+
+  "item.improvedfishingmod.corn_seeds": "Corn Seeds",
+  "item.improvedfishingmod.corn": "Corn",
+
   "creativetab.improvedfishingmod.fishing_items": "Fishing Items",
-  "creativetab.improvedfishingmod.fish_and_bait": "Food & Bait"
+  "creativetab.improvedfishingmod.fish": "Fish",
+  "creativetab.improvedfishingmod.bait": "Bait & More"
 }

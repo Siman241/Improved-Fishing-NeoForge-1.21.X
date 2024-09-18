@@ -1,0 +1,56 @@
+{
+  "type": "improvedfishingmod:land_cod",
+  "conditions": [
+    {
+      "condition": "minecraft:all_of",
+      "terms": [
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:gameplay/fishing"
+        },
+        {
+          "condition": "minecraft:random_chance_with_enchanted_bonus",
+          "enchantment": "minecraft:luck_of_the_sea",
+          "unenchanted_chance": 0.85,
+          "enchanted_chance": {
+            "type": "minecraft:linear",
+            "base": 0.9,
+            "per_level_above_first": 0.05
+          }
+        },
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "attacker",
+          "predicate": {
+            "location": {
+              "biomes": [
+                "minecraft:jungle",
+                "minecraft:sparse_jungle",
+                "minecraft:bamboo_jungle",
+                "minecraft:desert",
+                "minecraft:savanna",
+                "minecraft:savanna_plateau",
+                "minecraft:windswept_savanna",
+                "minecraft:badlands",
+                "minecraft:wooded_badlands",
+                "minecraft:eroded_badlands"
+              ]
+            },
+            "equipment": {
+              "mainhand": {
+                "items": "improvedfishingmod:woodrod"
+              },
+              "offhand": {
+                "items": [
+                  "improvedfishingmod:sea_snail",
+                  "minecraft:kelp"
+                ]
+              }
+            }
+          }
+        }
+      ]
+    }],
+  "item1": "minecraft:salmon",
+  "item2": "minecraft:cod"
+}

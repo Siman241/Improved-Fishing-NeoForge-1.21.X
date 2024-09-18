@@ -1,0 +1,54 @@
+{
+  "type": "improvedfishingmod:sea_cod",
+  "conditions": [
+    {
+      "condition": "minecraft:all_of",
+      "terms": [
+        {
+          "condition": "neoforge:loot_table_id",
+          "loot_table_id": "minecraft:gameplay/fishing"
+        },
+        {
+          "condition": "minecraft:random_chance_with_enchanted_bonus",
+          "enchantment": "minecraft:luck_of_the_sea",
+          "unenchanted_chance": 0.85,
+          "enchanted_chance": {
+            "type": "minecraft:linear",
+            "base": 0.9,
+            "per_level_above_first": 0.05
+          }
+        },
+        {
+          "condition": "minecraft:entity_properties",
+          "entity": "attacker",
+          "predicate": {
+            "location": {
+              "biomes": [
+                "minecraft:ocean",
+                "minecraft:deep_lukewarm_ocean",
+                "minecraft:cold_ocean",
+                "minecraft:deep_cold_ocean",
+                "minecraft:deep_ocean",
+                "minecraft:frozen_ocean",
+                "minecraft:lukewarm_ocean",
+                "minecraft:warm_ocean",
+                "minecraft:beach",
+                "minecraft:stony_shore",
+                "minecraft:snowy_beach"
+              ]
+            },
+            "equipment": {
+              "mainhand": {
+                "items": "improvedfishingmod:woodrod"
+              },
+              "offhand": {
+                "items": "minecraft:cod"
+              }
+            }
+          }
+        }
+      ]
+    }],
+  "item1": "improvedfishingmod:raw_octopus",
+  "item2": "improvedfishingmod:raw_tuna"
+}

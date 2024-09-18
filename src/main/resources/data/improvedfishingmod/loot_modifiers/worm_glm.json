@@ -1,0 +1,60 @@
+{
+  "type": "improvedfishingmod:worm_glm",
+  "conditions": [
+    {
+      "condition": "minecraft:any_of",
+      "terms": [
+        {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "condition": "minecraft:block_state_property",
+              "block": "minecraft:mud",
+              "properties": {}
+            },
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.25
+            }
+          ]
+        },
+        {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "condition": "minecraft:random_chance",
+              "chance": 0.15
+            },
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "minecraft:dirt",
+                  "properties": {}
+                },
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "minecraft:podzol",
+                  "properties": {}
+                },
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "minecraft:mycelium",
+                  "properties": {}
+                },
+                {
+                  "condition": "minecraft:block_state_property",
+                  "block": "minecraft:coarse_dirt",
+                  "properties": {}
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+
+  ],
+  "item": "improvedfishingmod:worm"
+}

@@ -2,6 +2,20 @@
   "parent": "minecraft:item/handheld_rod",
   "textures": {
     "layer0": "improvedfishingmod:item/woodrod"
-  }
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "improvedfishingmod:wood_cast": 0
+      },
+      "model": "improvedfishingmod:item/woodrod"
+    },
+    {
+      "predicate": {
+        "improvedfishingmod:wood_cast": 1
+      },
+      "model": "improvedfishingmod:item/woodrod_cast"
+    }
+  ]
 }
 

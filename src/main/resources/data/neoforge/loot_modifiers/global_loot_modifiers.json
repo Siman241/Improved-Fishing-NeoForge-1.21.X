@@ -1,0 +1,32 @@
+{
+  "replace": false,
+  "entries": [
+    "improvedfishingmod:land_corn",
+    "improvedfishingmod:land_worm",
+    "improvedfishingmod:land_cod",
+    "improvedfishingmod:land_other",
+    "improvedfishingmod:jungle_corn",
+    "improvedfishingmod:jungle_worm",
+    "improvedfishingmod:jungle_cod",
+    "improvedfishingmod:jungle_other",
+    "improvedfishingmod:sea_cod",
+    "improvedfishingmod:sea_sea_snail",
+    "improvedfishingmod:sea_kelp",
+    "improvedfishingmod:sea_other",
+    "improvedfishingmod:bamboo_land_corn",
+    "improvedfishingmod:bamboo_land_worm",
+    "improvedfishingmod:bamboo_land_cod",
+    "improvedfishingmod:bamboo_land_other",
+    "improvedfishingmod:bamboo_jungle_corn",
+    "improvedfishingmod:bamboo_jungle_worm",
+    "improvedfishingmod:bamboo_jungle_cod",
+    "improvedfishingmod:bamboo_jungle_other",
+    "improvedfishingmod:bamboo_sea_cod",
+    "improvedfishingmod:bamboo_sea_sea_snail",
+    "improvedfishingmod:bamboo_sea_kelp",
+    "improvedfishingmod:bamboo_sea_other",
+    "improvedfishingmod:worm_glm",
+    "improvedfishingmod:sea_snail_glm",
+    "improvedfishingmod:corn_seeds_chest"
+  ]
+}

@@ -9,6 +9,8 @@ public class ModFoods {
     public static final FoodProperties RAWPIKE = new FoodProperties.Builder().nutrition(2).saturationModifier(0.6f).build();
     //cooked food
     public static final FoodProperties COOKEDCARP = new FoodProperties.Builder().nutrition(6).saturationModifier(1.4f).build();
-    public static final FoodProperties COOKEDATFISH = new FoodProperties.Builder().nutrition(7).saturationModifier(1.2f).build();
+    public static final FoodProperties COOKEDCATFISH = new FoodProperties.Builder().nutrition(7).saturationModifier(1.2f).build();
     public static final FoodProperties COOKEDPIKE = new FoodProperties.Builder().nutrition(5).saturationModifier(1.6f).build();
+    //other
+    public static final FoodProperties CORN = new FoodProperties.Builder().nutrition(2).saturationModifier(0.3f).build();
 }

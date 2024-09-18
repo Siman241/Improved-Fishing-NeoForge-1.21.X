@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    {
+      "item": "improvedfishingmod:strengthened_fishing_line"
+    },
+    {
+      "item": "improvedfishingmod:diamond_tipped_fishing_hook"
+    },
+    {
+      "item": "improvedfishingmod:bamboo_pole"
+    },
+    {
+      "item": "improvedfishingmod:automatic_fishing_reel"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "improvedfishingmod:bamboo_rod"
+  }
+}

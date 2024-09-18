@@ -1,26 +1,19 @@
 package net.siman.improvedfishingmod;
 
-import com.mojang.authlib.minecraft.client.MinecraftClient;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.item.ItemProperties;
-import net.minecraft.commands.arguments.item.ItemParser;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.neoforged.fml.ModList;
-import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.event.entity.player.PlayerInteractEvent;
-import net.neoforged.neoforge.event.level.NoteBlockEvent;
 import net.neoforged.neoforge.event.tick.PlayerTickEvent;
-import net.neoforged.neoforge.items.wrapper.EntityEquipmentInvWrapper;
+import net.siman.improvedfishingmod.block.ModBlocks;
+
 import net.siman.improvedfishingmod.item.ModCreativeModeTabs;
 import net.siman.improvedfishingmod.item.ModItems;
-import net.siman.improvedfishingmod.item.custom.FishingRod;
+import net.siman.improvedfishingmod.loot.ModLootModifiers;
 import org.slf4j.Logger;
-
-import com.mojang.logging.LogUtils;
 
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -32,14 +25,10 @@ import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
-import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import org.slf4j.LoggerFactory;
 
-import java.util.Objects;
-import java.util.Random;
-import java.util.logging.ErrorManager;
-import java.util.random.RandomGenerator;
+import java.util.function.Predicate;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(ImprovedFishing.MOD_ID)
@@ -54,31 +43,27 @@ public class ImprovedFishing {
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
     public ImprovedFishing(IEventBus modEventBus, ModContainer modContainer) {
         // Register the commonSetup method for modloading
-        modEventBus.addListener(this::commonSetup);
+        //modEventBus.addListener(this::commonSetup);
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (ExampleMod) to respond directly to events.
         // Do not add this line if there are no @SubscribeEvent-annotated functions in this class, like onServerStarting() below.
         NeoForge.EVENT_BUS.register(this);
         ModCreativeModeTabs.register(modEventBus);
         ModItems.register(modEventBus);
-
+        ModBlocks.register(modEventBus);
+        ModLootModifiers.LOOT_MODIFIERS.register(modEventBus);
+        //ModLootModifiers.register(modEventBus);
         // Register the item to a creative tab
         //modEventBus.addListener(this::addCreative);
         NeoForge.EVENT_BUS.addListener(this::onPlayerPreTick);
-        //NeoForge.EVENT_BUS.addListener(this::checkCasting);
-        //NeoForge.EVENT_BUS.addListener(this::onClientSetup);
+        NeoForge.EVENT_BUS.addListener(this::onPlayerRightClickBlock);
+        NeoForge.EVENT_BUS.addListener(this::onPlayerRightClickItem);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
-        boolean f = false;
-        for(int i=0;i<ModList.get().getMods().size();i++){
-            //System.out.println(ModList.get().getMods().get(i).getModId());
-            if(Objects.equals(ModList.get().getMods().get(i).getModId(), "crafttweaker")) f=true;
-        }
-        if(!f) throw new RuntimeException("Missing CraftTweakerMod");
 
 
     }
@@ -93,50 +78,105 @@ public class ImprovedFishing {
     public static class ClientModEvents {
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
+            event.enqueueWork(() -> { // ItemProperties#register is not threadsafe, so we need to call it on the main thread
+                ItemProperties.register(
+                        // The item to apply the property to.
+                        ModItems.WOODROD.get(),
+                        // The id of the property.
+                        ResourceLocation.fromNamespaceAndPath("improvedfishingmod", "wood_cast"),
+                        // A reference to a method that calculates the override value.
+                        // Parameters are the used item stack, the level context, the player using the item,
+                        // and a random seed you can use.
+                        (stack, level, player, seed) -> {
+                            if(player != null  && level != null  && player.isHolding(ModItems.WOODROD.get()) && stack.getEnchantmentValue() == 2){
+                                return 1;
+                            }
+                            return 0;
+                            //return player != null && player.isUsingItem() && player.getUseItem() == stack ? 1.0F : 0.0F;
+                        }
+                );
+                ItemProperties.register(
+                        // The item to apply the property to.
+                        ModItems.BAMBOO_ROD.get(),
+                        // The id of the property.
+                        ResourceLocation.fromNamespaceAndPath("improvedfishingmod", "bamboo_cast"),
+                        // A reference to a method that calculates the override value.
+                        // Parameters are the used item stack, the level context, the player using the item,
+                        // and a random seed you can use.
+                        (stack, level, player, seed) -> {
+                            if(player != null  && level != null  && player.isHolding(ModItems.BAMBOO_ROD.get()) && stack.getEnchantmentValue() == 2){
+                                return 1;
+                            }
+                            return 0;
+                            //return player != null && player.isUsingItem() && player.getUseItem() == stack ? 1.0F : 0.0F;
+                        }
+                );
+            });
 
         }
     }
+    private void onPlayerRightClickBlock(PlayerInteractEvent.RightClickBlock event){
+        //System.out.println(event.getItemStack().getItem());
+        if(event.getItemStack().getItem().toString().equals("improvedfishingmod:corn_seeds")){
+            if(event.getLevel().getBlockState(event.getPos()).getBlock().equals(Blocks.FARMLAND)){
+                event.getEntity().swing(event.getHand());
+                event.getEntity().playSound(SoundEvents.CROP_PLANTED);
+                event.getItemStack().setCount(event.getItemStack().getCount()-1);
+                event.getEntity().setItemInHand(event.getHand(),event.getItemStack());
+                event.getLevel().setBlock(event.getPos().above(1), ModBlocks.CORN_CROP.get().defaultBlockState(), 4);
+            }
+        }
+        //event.getItemStack().onStopUsing(event.getEntity(), event.getItemStack().getItem().getDamage(event.getItemStack()));
+    }
+    int damage = 0;
+    int time = 0;
+    private void onPlayerRightClickItem(PlayerInteractEvent.RightClickItem event){
+        //System.out.println(event.getItemStack().getItem());
+        if(event.getItemStack().getItem().equals(ModItems.BAMBOO_ROD.get()) || event.getItemStack().getItem().equals(ModItems.WOODROD.get())) {
+            if(event.getEntity().getSlot(99).get().getItem().equals(ModItems.CORN.get()) ||
+                    event.getEntity().getSlot(99).get().getItem().equals(ModItems.WORM.get()) ||
+                    event.getEntity().getSlot(99).get().getItem().equals(ModItems.SEA_SNAIL.get()) ||
+                    event.getEntity().getSlot(99).get().getItem().equals(Items.COD) ||
+                    event.getEntity().getSlot(99).get().getItem().equals(Items.KELP)) {
+                event.getItemStack().setDamageValue(event.getItemStack().getItem().getDamage(event.getItemStack())+1);
+            }
+        }
 
+    }
 
+    boolean holding = false;
     //private boolean f = false
     private void onPlayerPreTick(PlayerTickEvent.Pre event){
         Player ply = event.getEntity();
-        /*
-        for(int i=0;i<1200;i++) {
-            if(MinecartItem.byId(i).getDefaultInstance().getItem().toString().equals("minecraft:fishing_rod")) System.out.println(i);
-            //ply.addItem(MinecartItem.byId(i).getDefaultInstance());
-        }
-        fishing rod 931
-        string 850
-         */
-        //System.out.println(ply.getOffhandItem().getItem().toString().equals("minecraft:fishing_rod"));
-        if(ply.getItemInHand(ply.getUsedItemHand()).getItem().toString().equals("minecraft:fishing_rod")){
-            ply.setItemInHand(ply.getUsedItemHand(),ModItems.WOODROD.toStack());
-            /* to find what ID String is
-            for(int i=0;i<1200;i++) {
-                if(MinecartItem.byId(i).getDefaultInstance().getItem().toString().equals("minecraft:string")) System.out.println(i);
-                //ply.addItem(MinecartItem.byId(i).getDefaultInstance());
-            }
-            */
-            ply.addItem(MinecartItem.byId(850).getDefaultInstance());
-            ply.addItem(MinecartItem.byId(850).getDefaultInstance());
-            ply.playSound(SoundEvents.CRAFTER_CRAFT);
-            /*
-            for(int i=0;i<ModList.get().getMods().size();i++){
-                System.out.println(ModList.get().getMods().get(i).getModId());
+
+        for(int i=0;i<100;i++){
+            if(ply.getSlot(i).get().getItem().toString().equals("minecraft:fishing_rod")){
+                ply.getSlot(i).set(ModItems.WOODPOLE.toStack());
+                ply.playSound(SoundEvents.CRAFTER_CRAFT);
+                ply.addItem(Items.STRING.getDefaultInstance());
+                ply.addItem(Items.STRING.getDefaultInstance());
             }
 
-             */
         }
-        else if(ply.getOffhandItem().getItem().toString().equals("minecraft:fishing_rod")){
-            for(int i=99;i<100;i++){
-                ply.getSlot(i).set(ModItems.WOODROD.toStack());
-            }
-            ply.addItem(MinecartItem.byId(850).getDefaultInstance());
-            ply.addItem(MinecartItem.byId(850).getDefaultInstance());
-            ply.playSound(SoundEvents.CRAFTER_CRAFT);
+        if(ply.getItemInHand(ply.getUsedItemHand()).getItem().equals(ModItems.WOODROD.get())
+                || ply.getItemInHand(ply.getUsedItemHand()).getItem().equals(ModItems.BAMBOO_ROD.get())) {
+            holding = true;
+        }
+        else if((!ply.getItemInHand(ply.getUsedItemHand()).getItem().equals(ModItems.WOODROD.get()) ||
+                !ply.getItemInHand(ply.getUsedItemHand()).getItem().equals(ModItems.BAMBOO_ROD.get())) && holding){
+            System.out.println("is not holding");
+            for(int i=0;i<100;i++){
+                if(ply.getSlot(i).get().getItem().equals(ModItems.WOODROD.get())){
+                    ply.getSlot(i).get().getItem().onStopUsing(ply.getSlot(i).get(), ply, 1);
+                }
+                if(ply.getSlot(i).get().getItem().equals(ModItems.BAMBOO_ROD.get())){
+                    ply.getSlot(i).get().getItem().onStopUsing(ply.getSlot(i).get(), ply, 1);
+                }
 
+            }
+            holding = false;
         }
+
 
 
     }

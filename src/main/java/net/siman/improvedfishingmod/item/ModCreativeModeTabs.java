@@ -24,12 +24,17 @@ public class ModCreativeModeTabs {
                 output.accept(ModItems.FISHINGLINE);
                 output.accept(ModItems.FISHINGHOOK);
                 output.accept(ModItems.FISHINGREEL);
+                output.accept(ModItems.BAMBOO_POLE);
+                output.accept(ModItems.BAMBOO_ROD);
+                output.accept(ModItems.STRENGTHENED_FISHING_LINE);
+                output.accept(ModItems.DIAMOND_TIPPED_FISHING_HOOK);
+                output.accept(ModItems.AUTOMATIC_FISHING_REEL);
             })).build());
 
-    public static final Supplier<CreativeModeTab> IMPROVED_FISHING_FISH_AND_BAIT_TAB = CREATIVE_MODE_TAB.register("improved_fishing_fish_and_bait_tab",
+    public static final Supplier<CreativeModeTab> IMPROVED_FISHING_FISH_TAB = CREATIVE_MODE_TAB.register("improved_fishing_fish_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.RAWPIKE.get()))
                     .withTabsBefore(ResourceLocation.fromNamespaceAndPath(ImprovedFishing.MOD_ID, "improved_fishing_items_tab"))
-                    .title(Component.translatable("creativetab.improvedfishingmod.fish_and_bait"))
+                    .title(Component.translatable("creativetab.improvedfishingmod.fish"))
                     .displayItems(((itemDisplayParameters, output) -> {
                         output.accept(ModItems.RAWCARP);
                         output.accept(ModItems.RAWCATFISH);
@@ -37,8 +42,29 @@ public class ModCreativeModeTabs {
                         output.accept(ModItems.COOKEDCARP);
                         output.accept(ModItems.COOKEDCATFISH);
                         output.accept(ModItems.COOKEDPIKE);
-                        output.accept(ModItems.WORM);
+                        output.accept(ModItems.RAW_ARAPAIMA);
+                        output.accept(ModItems.RAW_PIRANHA);
+                        output.accept(ModItems.RAW_EEL);
+                        output.accept(ModItems.COOKED_ARAPAIMA);
+                        output.accept(ModItems.COOKED_PIRANHA);
+                        output.accept(ModItems.COOKED_EEL);
+                        output.accept(ModItems.RAW_TUNA);
+                        output.accept(ModItems.COOKED_TUNA);
+                        output.accept(ModItems.COOKED_OCTOPUS);
+                        output.accept(ModItems.RAW_OCTOPUS);
                     })).build());
+
+    public static final Supplier<CreativeModeTab> IMPROVED_FISHING_FISH_AND_BAIT_TAB = CREATIVE_MODE_TAB.register("improved_fishing_bait_tab",
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.WORM.get()))
+                    .withTabsBefore(ResourceLocation.fromNamespaceAndPath(ImprovedFishing.MOD_ID, "improved_fishing_items_tab"))
+                    .title(Component.translatable("creativetab.improvedfishingmod.bait"))
+                    .displayItems(((itemDisplayParameters, output) -> {
+                        output.accept(ModItems.WORM);
+                        output.accept(ModItems.CORN_SEEDS);
+                        output.accept(ModItems.CORN);
+                        output.accept(ModItems.SEA_SNAIL);
+                    })).build());
+
 
     public static void register(IEventBus eventBus){
         CREATIVE_MODE_TAB.register(eventBus);
