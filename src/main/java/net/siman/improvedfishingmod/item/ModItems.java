@@ -70,22 +70,22 @@ public class ModItems {
 
     //Jungle Fish
     public static final DeferredItem<Item> RAW_ARAPAIMA = ITEMS.register("raw_arapaima",
-            ()-> new Item(new Item.Properties().food(ModFoods.RAWCARP)));
-
-    public static final DeferredItem<Item> RAW_PIRANHA = ITEMS.register("raw_piranha",
             ()-> new Item(new Item.Properties().food(ModFoods.RAWCATFISH)));
 
-    public static final DeferredItem<Item> RAW_EEL = ITEMS.register("raw_eel",
+    public static final DeferredItem<Item> RAW_PIRANHA = ITEMS.register("raw_piranha",
             ()-> new Item(new Item.Properties().food(ModFoods.RAWPIKE)));
 
-    public static final DeferredItem<Item> COOKED_ARAPAIMA = ITEMS.register("cooked_arapaima",
-            ()-> new Item(new Item.Properties().food(ModFoods.COOKEDCARP)));
+    public static final DeferredItem<Item> RAW_EEL = ITEMS.register("raw_eel",
+            ()-> new Item(new Item.Properties().food(ModFoods.RAWCARP)));
 
-    public static final DeferredItem<Item> COOKED_PIRANHA = ITEMS.register("cooked_piranha",
+    public static final DeferredItem<Item> COOKED_ARAPAIMA = ITEMS.register("cooked_arapaima",
             ()-> new Item(new Item.Properties().food(ModFoods.COOKEDCATFISH)));
 
-    public static final DeferredItem<Item> COOKED_EEL = ITEMS.register("cooked_eel",
+    public static final DeferredItem<Item> COOKED_PIRANHA = ITEMS.register("cooked_piranha",
             ()-> new Item(new Item.Properties().food(ModFoods.COOKEDPIKE)));
+
+    public static final DeferredItem<Item> COOKED_EEL = ITEMS.register("cooked_eel",
+            ()-> new Item(new Item.Properties().food(ModFoods.COOKEDCARP)));
 
     //Sea Fish
     public static final DeferredItem<Item> RAW_OCTOPUS = ITEMS.register("raw_octopus",
